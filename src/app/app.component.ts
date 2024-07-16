@@ -19,7 +19,7 @@ export class AppComponent {
       { text: 'Title', textAr: 'العنوان', sortable: true ,sortDirection: 'asc'},
       { text: 'Management', textAr: 'الإدارة', sortable: true ,sortDirection: 'asc'},
       { text: 'ComplainNumber', textAr: 'رقم البلاغ', sortable: true ,sortDirection: 'asc'},
-      { text: 'Actions', textAr: ' التحكم', sortable: true,sortDirection: 'asc'},
+      { text: 'Actions', textAr: ' التحكم', sortable: false,sortDirection: 'asc'},
 
     ],
     data: [
