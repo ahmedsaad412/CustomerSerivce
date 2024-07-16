@@ -1,0 +1,11 @@
+<button class="btn btn-primary m-1" (click)="ChangeLanguage()">
+ change language
+</button>
+<table class="table">
+  <thead>
+  <app-table-header [tabledata]="tableData" [language]="language"> </app-table-header>
+ </thead>
+  <tbody>
+  <app-table-body [tableData]="tableData" ></app-table-body>
+  </tbody>
+</table>

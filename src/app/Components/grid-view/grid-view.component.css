@@ -1,0 +1,19 @@
+.table{
+  border: 1px solid black;
+}
+.sort-icon {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  cursor: pointer;
+}
+
+.sort-icon.asc {
+  border-bottom: 5px solid black;
+}
+
+.sort-icon.desc {
+  border-top: 5px solid black;
+}

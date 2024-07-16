@@ -1,0 +1,14 @@
+
+  <tr>
+    <ng-container *ngFor="let header of tabledata.headers" (click)="header.sortable && sortColumn(header)">
+      <th *ngIf="language"(click)="header.sortable && sortColumn(header)" >
+        {{ header.text }}
+        <span *ngIf="header.sortable" class="sort-icon" [ngClass]="{'asc': header.sortDirection === 'asc', 'desc': header.sortDirection === 'desc'}"></span>
+      </th>
+      <th *ngIf="!language"(click)="header.sortable && sortColumn(header)">
+        {{ header.textAr }}
+        <span *ngIf="header.sortable" class="sort-icon" [ngClass]="{'asc': header.sortDirection === 'asc', 'desc': header.sortDirection === 'desc'}"></span>
+      </th>
+    </ng-container>
+  </tr>
+

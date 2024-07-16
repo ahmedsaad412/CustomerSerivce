@@ -1,0 +1,12 @@
+<tr *ngFor="let item of tableData.data">
+  <ng-container *ngFor="let header of tableData.headers">
+    <td *ngIf="header.text !== 'Actions'">
+      {{ item[header.text.toLowerCase()] }}
+    </td>
+    <td *ngIf="header.text === 'Actions'">
+      <button class="btn btn-primary m-1" *ngFor="let action of tableData.actions" >
+        {{ action.label }}
+      </button>
+    </td>
+  </ng-container>
+</tr>
