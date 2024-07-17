@@ -29,7 +29,7 @@ export class AppComponent {
       { id: 5, provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78},
       { id: 6, provider: 'tamer ', for :'mona',title:'hello' ,management :'no1', complainnumber:999696},
     ],
-    pagination: { pageSize: 5, currentPage: 1 },
+    pagination: { pageSize: 3, currentPage: 1 },
     sort: { sortBy: 'name', sortDirection: 'asc' },
     actions: [
       { type: 'edit', label: 'Edit' },
