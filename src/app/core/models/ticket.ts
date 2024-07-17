@@ -4,5 +4,6 @@ export interface Ticket {
   management :string ,
   for :string ,
   title :string ,
-  complainnumber :number
+  complainnumber :number,
+  status :string
 }

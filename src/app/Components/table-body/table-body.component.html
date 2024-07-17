@@ -7,9 +7,11 @@
     </td>
     <td *ngIf="header.text === 'Actions'">
       <div class="d-flex gap-2" >
-      <button class="btn btn-primary m-1"  *ngFor="let action of tableData.actions" (click)="fireEvent(action.type ,item.id)" >
-        {{ action.label }}
-      </button>
+        <ng-container *ngFor="let action of tableData.actions">
+          <button class="btn btn-primary m-1" [disabled]="!action.Rule(item)"   (click)="fireEvent(action.type ,item.id)" >
+            {{ action.label }}
+          </button>
+        </ng-container>
     </div>
     </td>
   </ng-container>

@@ -22,18 +22,24 @@ export class AppComponent {
       { text: 'Actions', textAr: ' التحكم', sortable: false,sortDirection: 'asc'},
     ],
     data: [
-      { id: 1, provider: 'John Doe', for :'mona',title:'hello' ,management :'no1', complainnumber:2262},
-      { id: 2, provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515},
-      { id: 3, provider: 'will deep', for :'sara',title:'hello' ,management :'no2', complainnumber:8555},
-      { id: 4, provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898},
-      { id: 5, provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78},
-      { id: 6, provider: 'tamer ', for :'mona',title:'hello' ,management :'no1', complainnumber:999696},
+      { id: 1,status :'avaliable', provider: 'John Doe', for :'mona',title:'hello' ,management :'no1', complainnumber:2262},
+      { id: 2,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515},
+      { id: 3,status :'avaliable', provider: 'will deep', for :'sara',title:'hello' ,management :'no2', complainnumber:8555},
+      { id: 4,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898},
+      { id: 5,status :'Not Avaliable', provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78},
+      { id: 6,status :'Not Avaliable', provider: 'tamer ', for :'mona',title:'hello' ,management :'no1', complainnumber:999696},
     ],
     pagination: { pageSize: 3, currentPage: 1 },
     sort: { sortBy: 'name', sortDirection: 'asc' },
     actions: [
-      { type: 'edit', label: 'Edit' },
-      { type: 'delete', label: 'Delete' }
+      //can edit when avaliable => return true
+      { type: 'edit', label: 'Edit' ,  Rule: (obj: any) => {
+        return obj['status'] != 'Not Avaliable';
+      }},
+      //cant delete tickets at department no1 => return true
+      { type: 'delete', label: 'Delete',  Rule: (obj: any) => {
+        return obj['management'] == 'no1';
+      } }
     ],
     language :true
   };

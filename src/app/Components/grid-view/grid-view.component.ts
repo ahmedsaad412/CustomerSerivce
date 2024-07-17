@@ -20,6 +20,7 @@ export class GridViewComponent implements OnInit {
 constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sort :SortService){
 
 }
+//data on reload page
   ngOnInit(): void {
     this.tickets= this.paginatedData.paginateDate(1,this.tableData)
   }
@@ -33,10 +34,12 @@ ChangeLanguage(){
   this.tableData.language = !this.tableData.language;
   this.language =this.tableData.language
 }
+//data when pagination
 handlePaginatedData(page_number:number) {
 this.tickets= this.paginatedData.paginateDate(page_number,this.tableData)
 this.c.detectChanges();
 }
+//data after sorting
 handelSortHeader(header:any){
   this.sortByThisHeader=header;
   this.tickets= this.sort.sortColumn(this.sortByThisHeader ,this.tableData);
