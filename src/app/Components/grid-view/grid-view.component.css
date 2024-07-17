@@ -1,4 +1,4 @@
-.table{
+/* .table{
   border-collapse: collapse;
 }
 .sort-icon {
@@ -16,4 +16,21 @@
 
 .sort-icon.desc {
   border-top: 5px solid black;
+} */
+.table thead {
+  cursor: pointer;
+
+}
+#Tickets thead  tr th {
+  background-color: #198754;
+  color: #fff;
+}
+.table th span {
+  margin-left: 5px;
+}
+th.sorted {
+  background-color: #f0f0f0;
+}
+i {
+  margin: 5px;
 }

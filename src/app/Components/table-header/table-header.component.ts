@@ -15,7 +15,9 @@ export class TableHeaderComponent {
   constructor(private sortService :SortService){}
 @Input () tabledata :ITableData |any
 @Input () language :boolean =true
+sortDirection : any
 sortColumn(header :ITableHeader){
   this.sortService.sortColumn(header ,this.tabledata);
+  this.sortDirection=header.sortDirection
 }
 }

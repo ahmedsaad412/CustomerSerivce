@@ -9,7 +9,6 @@ export class SortService {
 tableData :ITableData |any
   constructor() { }
   sortColumn(header: ITableHeader ,data :any) {
-    console.log(header);
     this.tableData=data;
     header.sortDirection = header.sortDirection === 'desc' ? 'asc' : 'desc';
     this.tableData.sort = {

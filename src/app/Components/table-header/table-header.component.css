@@ -1,22 +1,21 @@
-.sort-icon {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
+ th {
   cursor: pointer;
-}
 
-.sort-icon.asc {
-  border-bottom: 5px solid black;
+border-collapse: collapse;
+width: 120px;
+padding: 15px;
 }
+ tr th {
+  background-color: #198754;
+  color: #fff;
+}
+.table th span {
+  margin-left: 5px;
+}
+th.sorted {
+  background-color: #f0f0f0;
+}
+span i {
+  margin: 5px;
 
-.sort-icon.desc {
-  border-top: 5px solid black;
 }
-th{
-  border: 1px solid black;
-  border-collapse: collapse;
-  width: 100px;
-  padding: 15px;
-  }
