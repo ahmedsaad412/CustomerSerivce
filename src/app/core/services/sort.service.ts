@@ -10,7 +10,7 @@ tableData :ITableData |any
   constructor() { }
   sortColumn(header: ITableHeader ,data :any) {
     this.tableData=data;
-    header.sortDirection = header.sortDirection === 'desc' ? 'asc' : 'desc';
+    header.sortDirection = header.sortDirection === 'asc' ? 'desc' : 'asc';
     this.tableData.sort = {
       sortBy: header.text.toLowerCase(),
       sortDirection: header.sortDirection

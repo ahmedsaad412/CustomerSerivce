@@ -1,4 +1,4 @@
-<tr *ngFor="let item of paginatedData ;let i = index">
+<tr *ngFor="let item of tableData.data ;let i = index">
   <ng-container *ngFor="let header of tableData.headers" >
   <ng-container >
     <td *ngIf="header.text !== 'Actions'">

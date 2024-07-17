@@ -22,18 +22,7 @@ export class PaginationComponent implements OnInit {
       this.currentPage = 1;
       this.paginatedData();
   }
-  // ngOnChanges(changes: SimpleChanges) {
-  //   debugger;
-  //   if (changes['data'] && changes['data'].currentValue) {
-
-  //     this.currentPage=1;
-  //     this.pageSize=this.data.pagination.pageSize;
-  //     this.totalPages = Math.ceil(this.data.data.length / this.pageSize);
-  //     this.currentPage = 1;
-  //     this.paginatedData();
-  //   }
-  // }
-//////pagination //retrive subset from data []
+  
  paginatedData() {
   const startIndex = (this.currentPage - 1) * this.pageSize;
   const paginated = this.data.data.slice(startIndex, startIndex + this.pageSize);
