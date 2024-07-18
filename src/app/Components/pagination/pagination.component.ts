@@ -17,23 +17,23 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentPage=1;
-      this.pageSize=this.data.pagination.pageSize;
-      this.totalPages = Math.ceil(this.data.data.length / this.pageSize);
-      this.currentPage = 1;
+    this.pageSize=this.data.pagination.pageSize;
+    this.totalPages = Math.ceil(this.data.data.length / this.pageSize);
+    this.currentPage = 1;
   }
 
 
 nextPage() {
   if (this.currentPage < this.totalPages) {
-    this.currentPage++;
-    this.sendData.emit(this.currentPage)
+       this.currentPage++;
+       this.sendData.emit(this.currentPage)
   }
 }
 
 previousPage() {
   if (this.currentPage > 1) {
-    this.currentPage--;
-    this.sendData.emit(this.currentPage)
+       this.currentPage--;
+       this.sendData.emit(this.currentPage)
   }
 }
 }

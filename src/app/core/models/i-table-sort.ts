@@ -1,4 +1,4 @@
 export interface ITableSort {
-  sortBy: string; 
-  sortDirection: 'asc' | 'desc';
+  sortBy: string;
+  sortDirection: string;
 }

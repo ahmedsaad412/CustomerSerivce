@@ -1,5 +1,5 @@
-<tr *ngFor="let item of paginatedData ;let i = index">
-<!-- <tr *ngFor="let item of tableData.data ;let i = index"> -->
+<tr *ngFor="let item of Tickets ;let i = index">
+
   <ng-container *ngFor="let header of tableData.headers" >
   <ng-container >
     <td *ngIf="header.text !== 'Actions'">
@@ -8,7 +8,7 @@
     <td *ngIf="header.text === 'Actions'">
       <div class="d-flex gap-2" >
         <ng-container *ngFor="let action of tableData.actions">
-          <button class="btn btn-primary m-1" [disabled]="!action.Rule(item)"   (click)="fireEvent(action.type ,item.id)" >
+          <button class="btn btn-primary m-1" [disabled]="action.Rule(item)"   (click)="buttonClicked(action.type ,item.id)" >
             {{ action.label }}
           </button>
         </ng-container>

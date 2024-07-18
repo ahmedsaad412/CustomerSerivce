@@ -17,12 +17,12 @@ import { Ticket } from '../core/models/ticket';
   styleUrl: './grid-view.component.css'
 })
 export class GridViewComponent implements OnInit {
-constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sort :SortService){
+constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService){
 
 }
 //data on reload page
   ngOnInit(): void {
-    this.tickets= this.paginatedData.paginateDate(1,this.tableData)
+    this.tickets= this.sortService.applyDefaultSorting(1,this.tableData)
   }
 
 @Input() tableData :ITableData | any  ;
@@ -40,8 +40,8 @@ this.tickets= this.paginatedData.paginateDate(page_number,this.tableData)
 this.c.detectChanges();
 }
 //data after sorting
-handelSortHeader(header:any){
+handelSortHeader(header:ITableHeader){
   this.sortByThisHeader=header;
-  this.tickets= this.sort.sortColumn(this.sortByThisHeader ,this.tableData);
+  this.tickets= this.sortService.sortColumn(this.sortByThisHeader ,this.tableData);
 }
 }

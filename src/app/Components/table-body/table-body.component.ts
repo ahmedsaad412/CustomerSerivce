@@ -16,26 +16,19 @@ export class TableBodyComponent {
   @Input () tableData : ITableData |any ;
   editingRowIndex :number =-1
   deletingRowIndex :number =-1
- @Input () paginatedData :Ticket[] |any;
-  fireEvent(action :any ,id : any){
+ @Input () Tickets :Ticket[] |any;
+ buttonClicked(action :string ,id : number){
     switch(action){
       case 'edit' : this.editingRowIndex =id
         break;
       case 'delete' : this.deletingRowIndex =id
         break;
     }
-    console.log('action type:' +action);
-    console.log( 'ticket id: '+id );
-
   }
-  saveRow(index :number ,item :ITableData){
-console.log(index);
-console.log(item);
+  // saveRow(index :number ,item :ITableData){
+  // }
+  // cancelEdit(index : any){
 
-  }
-  cancelEdit(index : any){
-    console.log(index);
-
-  }
+  // }
 
 }

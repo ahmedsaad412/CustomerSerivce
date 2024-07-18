@@ -7,7 +7,7 @@
     <app-table-header [tabledata]="tableData" [language]="language" (sendHeader)="handelSortHeader($event)"> </app-table-header>
    </thead>
     <tbody>
-    <app-table-body [tableData]="tableData" [paginatedData]="tickets"></app-table-body>
+    <app-table-body [tableData]="tableData" [Tickets]="tickets"></app-table-body>
     </tbody>
   </table>
   <app-pagination [data]="tableData" (sendData)="handlePaginatedData($event)"></app-pagination>

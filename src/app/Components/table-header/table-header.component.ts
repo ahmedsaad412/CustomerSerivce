@@ -18,10 +18,9 @@ export class TableHeaderComponent {
 @Output() sendHeader: EventEmitter<any> = new EventEmitter<number>();
 sortDirection : any
 sortColumn(header :ITableHeader){
-  console.log('header at header component' +JSON.stringify(header));
-
   this.sendHeader.emit(header)
-  //this.sortService.sortColumn(header ,this.tabledata);
   this.sortDirection=header.sortDirection
+  console.log(this.sortDirection);
+
 }
 }
