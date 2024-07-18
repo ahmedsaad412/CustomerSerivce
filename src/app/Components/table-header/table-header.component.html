@@ -1,6 +1,6 @@
 <tr>
   <ng-container *ngFor="let header of tabledata.headers">
-    <th *ngIf="language ; else ArLanguage" (click)=" sortColumn(header)">
+    <th (click)=" sortColumn(header)">
       <ng-container *ngIf="header.sortable">
         <ng-container *ngIf="sortDirection === 'asc'">
           <i class="bi bi-arrow-down"></i>
@@ -12,23 +12,8 @@
           <i class="bi bi-arrow-down-up"></i>
         </ng-container>
       </ng-container>
-      {{ header.text }}
+      {{ header.text |translate }}
     </th>
-    <ng-template #ArLanguage>
-      <th (click)="sortColumn(header)">
-        <ng-container *ngIf="header.sortable">
-          <ng-container *ngIf="sortDirection === 'asc'">
-            <i class="bi bi-arrow-down"></i>
-          </ng-container>
-          <ng-container *ngIf="sortDirection === 'desc'">
-            <i class="bi bi-arrow-up"></i>
-          </ng-container>
-          <ng-container *ngIf="sortDirection !== 'asc' && sortDirection !== 'desc'">
-            <i class="bi bi-arrow-down-up"></i>
-          </ng-container>
-        </ng-container>
-        {{ header.textAr }}
-      </th>
-    </ng-template>
+
   </ng-container>
 </tr>

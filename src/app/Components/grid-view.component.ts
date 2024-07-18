@@ -8,20 +8,24 @@ import { TableHeaderComponent } from './table-header/table-header.component';
 import { TableBodyComponent } from './table-body/table-body.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { Ticket } from '../core/models/ticket';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-grid-view',
   standalone: true,
-  imports: [CommonModule,TableHeaderComponent ,TableBodyComponent ,PaginationComponent],
+  imports: [CommonModule,TableHeaderComponent ,TableBodyComponent ,PaginationComponent ,TranslateModule],
   templateUrl: './grid-view.component.html',
   styleUrl: './grid-view.component.css'
 })
 export class GridViewComponent implements OnInit {
-constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService){
-
+constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService ,private translate :TranslateService){
 }
+currentLanguage: string = 'ar';
 //data on reload page
   ngOnInit(): void {
+    this.translate.addLangs(['ar', 'en']);
+    this.translate.setDefaultLang('ar'); // Set default language
+    this.translate.use(this.currentLanguage);
     this.tickets= this.sortService.applyDefaultSorting(1,this.tableData)
   }
 
@@ -30,9 +34,10 @@ tickets :Ticket[] |any
 language :boolean =true;
 sortByThisHeader :ITableHeader |any
 
-ChangeLanguage(){
-  this.tableData.language = !this.tableData.language;
-  this.language =this.tableData.language
+toggleLanguage(): void {
+  this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
+  this.translate.use(this.currentLanguage);
+  this.c.detectChanges();
 }
 //data when pagination
 handlePaginatedData(page_number:number) {
@@ -43,5 +48,24 @@ this.c.detectChanges();
 handelSortHeader(header:ITableHeader){
   this.sortByThisHeader=header;
   this.tickets= this.sortService.sortColumn(this.sortByThisHeader ,this.tableData);
+  this.c.detectChanges();
+}
+
+handleSaveData(updatedData: Ticket) {
+
+  this.tickets.map((a:Ticket)=>{
+    if(a.id==updatedData.id){
+      return updatedData
+    }
+    return a;
+  });
+  this.c.detectChanges();
+}
+
+handleDeleteData(id :number){
+  this.tickets= this.tickets.filter((ticket:Ticket) => ticket.id !== id);
+  console.log(id);
+  this.c.detectChanges();
+
 }
 }

@@ -1,5 +1,5 @@
 <tr *ngFor="let item of Tickets ;let i = index">
-
+  <ng-container *ngIf="editingRowIndex !== i; else editRow">
   <ng-container *ngFor="let header of tableData.headers" >
   <ng-container >
     <td *ngIf="header.text !== 'Actions'">
@@ -8,27 +8,27 @@
     <td *ngIf="header.text === 'Actions'">
       <div class="d-flex gap-2" >
         <ng-container *ngFor="let action of tableData.actions">
-          <button class="btn btn-primary m-1" [disabled]="action.Rule(item)"   (click)="buttonClicked(action.type ,item.id)" >
-            {{ action.label }}
+          <button class="btn btn-primary m-1" [disabled]="action.Rule(item)"   (click)="buttonClicked(action.type ,item ,i )" >
+            {{ action.label |translate }}
           </button>
         </ng-container>
     </div>
     </td>
   </ng-container>
   </ng-container>
-  <!-- <ng-template #editRow >
+  </ng-container>
+  <ng-template #editRow >
     <ng-container  *ngFor="let header of tableData.headers">
       <td *ngIf="header.text !== 'Actions'">
-        <input type="text" class="form-control" [(ngModel)]="tableData[i][header]" />
-        {{ item[header.text.toLowerCase()] }}
+        <input  type="text" class="form-control"[disabled]="header.text === 'ID'" [(ngModel)]="ticket[header.text.toLowerCase()]" />
       </td>
       <td *ngIf="header.text === 'Actions'">
         <div class="d-flex gap-2">
-          <button class="btn btn-sm btn-success" (click)="saveRow(i ,item[i])">Save</button>
+          <button class="btn btn-sm btn-success" (click)="saveRow(Tickets[i] )">Save</button>
           <button class="btn btn-sm btn-secondary" (click)="cancelEdit(i)">Cancel</button>
         </div>
       </td>
     </ng-container>
-  </ng-template> -->
+  </ng-template>
 </tr>
 
