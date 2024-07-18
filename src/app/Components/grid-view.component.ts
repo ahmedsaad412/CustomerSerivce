@@ -1,13 +1,13 @@
-import { PaginationService } from './../../core/services/pagination.service';
-import { ITableHeader } from './../../core/models/i-table-header';
-import { ITableData } from './../../core/models/i-table-data';
+import { PaginationService } from '../core/services/pagination.service';
+import { ITableHeader } from '../core/models/i-table-header';
+import { ITableData } from '../core/models/i-table-data';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SortService } from '../../core/services/sort.service';
-import { TableHeaderComponent } from '../table-header/table-header.component';
-import { TableBodyComponent } from '../table-body/table-body.component';
-import { PaginationComponent } from '../pagination/pagination.component';
-import { Ticket } from '../../core/models/ticket';
+import { SortService } from '../core/services/sort.service';
+import { TableHeaderComponent } from './table-header/table-header.component';
+import { TableBodyComponent } from './table-body/table-body.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { Ticket } from '../core/models/ticket';
 
 @Component({
   selector: 'app-grid-view',

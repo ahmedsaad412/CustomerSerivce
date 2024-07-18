@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { GridViewComponent } from './Components/grid-view/grid-view.component';
+import { GridViewComponent } from './Components/grid-view.component';
 import { ITableData } from './core/models/i-table-data';
 
 @Component({
