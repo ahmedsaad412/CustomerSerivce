@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Ticket } from '../../core/models/ticket';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
-  selector: 'app-table-body',
+  selector: '[mytablebody]',
   standalone: true,
   imports: [CommonModule,FormsModule ,TranslateModule],
   templateUrl: './table-body.component.html',

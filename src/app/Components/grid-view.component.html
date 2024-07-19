@@ -1,16 +1,25 @@
 <div class="container mt-4 mb-4">
+  <button class="btn btn-primary" (click)="toggleLanguage()">
+    {{ currentLanguage === "ar" ? " اللغة الإنجليزية" : "Arabic" }}
+  </button>
 
-    <button class="btn btn-primary" (click)="toggleLanguage()">
-      {{ currentLanguage === 'ar' ? ' اللغة الإنجليزية' : 'Arabic' }}
-    </button>
-
-  <table  class="table table-striped rounded-3 overflow-hidden "id="Tickets">
-    <thead>
-    <app-table-header [tabledata]="tableData" [language]="language" (sendHeader)="handelSortHeader($event)"> </app-table-header>
-   </thead>
-    <tbody>
-    <app-table-body [tableData]="tableData" [Tickets]="tickets" (deleteData)="handleDeleteData($event)"(saveData)="handleSaveData($event)" ></app-table-body>
-    </tbody>
+  <table class="table table-striped rounded-3 overflow-hidden" id="Tickets">
+    <thead
+      mytableheader
+      [tabledata]="tableData"
+      [language]="language"
+      (sendHeader)="handelSortHeader($event)"
+    ></thead>
+    <tbody
+      mytablebody
+      [tableData]="tableData"
+      [Tickets]="tickets"
+      (deleteData)="handleDeleteData($event)"
+      (saveData)="handleSaveData($event)"
+    ></tbody>
   </table>
-  <app-pagination [data]="tableData" (sendData)="handlePaginatedData($event)"></app-pagination>
+  <app-pagination
+    [data]="tableData"
+    (sendData)="handlePaginatedData($event)"
+  ></app-pagination>
 </div>

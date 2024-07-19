@@ -6,7 +6,7 @@ import { SortService } from '../../core/services/sort.service';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-table-header',
+  selector: '[mytableheader]',
   standalone: true,
   imports: [CommonModule ,TranslateModule],
   templateUrl: './table-header.component.html',
