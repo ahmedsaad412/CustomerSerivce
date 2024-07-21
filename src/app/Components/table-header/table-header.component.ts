@@ -14,7 +14,7 @@ import { SortIconDirective } from '../../Directives/sort-icon.directive';
   styleUrl: './table-header.component.css'
 })
 export class TableHeaderComponent {
-  constructor(private sortService :SortService){}
+  constructor(){}
 @Input () tabledata :ITableData |any
 @Input () language :boolean =true
 @Output() sendHeader: EventEmitter<any> = new EventEmitter<number>();

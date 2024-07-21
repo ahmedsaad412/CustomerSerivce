@@ -10,5 +10,5 @@ data: Ticket[];
 pagination: ITablePagination;
 sort: ITableSort;
 actions: ITableAction[];
-language :boolean;
+
 }

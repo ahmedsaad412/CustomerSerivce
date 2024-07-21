@@ -5,5 +5,6 @@ export interface Ticket {
   for :string ,
   title :string ,
   complainnumber :number,
-  status :string
+  status :string ,
+  mode : boolean
 }

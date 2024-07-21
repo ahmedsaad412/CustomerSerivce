@@ -56,4 +56,12 @@ export class TableBodyComponent {
   deleteRow(row :Ticket){
     this.deleteData.emit(row.id);
   }
+  ToggleMode(item :Ticket){
+    this.ticket= this.Tickets.find((ticket: Ticket) => ticket.id ===item.id);
+    console.log('before test '+ this.ticket.mode);
+    this.ticket.mode =!item.mode;
+    console.log('after test '+ this.ticket.mode);
+
+
+  }
 }

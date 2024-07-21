@@ -1,3 +1,4 @@
+import { TranslationService } from './../core/services/translation.service';
 import { PaginationService } from '../core/services/pagination.service';
 import { ITableHeader } from '../core/models/i-table-header';
 import { ITableData } from '../core/models/i-table-data';
@@ -10,6 +11,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { Ticket } from '../core/models/ticket';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
+
 @Component({
   selector: 'app-grid-view',
   standalone: true,
@@ -18,17 +20,14 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styleUrl: './grid-view.component.css'
 })
 export class GridViewComponent implements OnInit {
-constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService ,private translate :TranslateService){
+constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService ,private translationService:TranslationService,private translate :TranslateService){
 }
 currentLanguage: string = 'ar';
 //data on reload page
   ngOnInit(): void {
-    this.translate.addLangs(['ar', 'en']);
-    this.translate.setDefaultLang('ar'); // Set default language
-    this.translate.use(this.currentLanguage);
+    this.translationService.SetDefaultLanguage(this.currentLanguage)
     this.tickets= this.sortService.applyDefaultSorting(1,this.tableData)
   }
-
 @Input() tableData :ITableData | any  ;
 tickets :Ticket[] |any
 language :boolean =true;
@@ -36,7 +35,8 @@ sortByThisHeader :ITableHeader |any
 
 toggleLanguage(): void {
   this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
-  this.translate.use(this.currentLanguage);
+  this.translationService.SetDefaultLanguage(this.currentLanguage)
+
   this.c.detectChanges();
 }
 //data when pagination
