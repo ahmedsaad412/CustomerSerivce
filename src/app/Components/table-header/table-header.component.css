@@ -1,6 +1,6 @@
  th {
   cursor: pointer;
-
+text-align: center;
 border-collapse: collapse;
 width: 120px;
 padding: 15px;
@@ -17,5 +17,4 @@ th.sorted {
 }
 span i {
   margin: 5px;
-
 }

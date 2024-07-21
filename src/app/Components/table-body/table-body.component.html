@@ -12,6 +12,10 @@
             {{ action.label |translate }}
           </button>
         </ng-container>
+        <label class="switch m-1">
+          <input type="checkbox" [checked]="item.mode" (click)=" ToggleMode(item)">
+          <span class="slider round"></span>
+        </label>
     </div>
     </td>
   </ng-container>
