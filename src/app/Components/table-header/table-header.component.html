@@ -1,4 +1,4 @@
-<tr>
+<!-- <tr>
   <ng-container *ngFor="let header of tabledata.headers">
     <th (click)=" sortColumn(header)">
       <ng-container *ngIf="header.sortable">
@@ -14,6 +14,16 @@
       </ng-container>
       {{ header.text |translate }}
     </th>
-
+  </ng-container>
+</tr> -->
+<tr>
+  <ng-container *ngFor="let header of tabledata.headers">
+    <th (click)="sortColumn(header)">
+      <span *ngIf="header.sortable">
+        <!-- <span [sortIcon]="sortDirection"></span> -->
+        <i [sortIcon]="sortDirection" class="bi" ></i>
+      </span>
+      {{ header.text | translate }}
+    </th>
   </ng-container>
 </tr>

@@ -64,8 +64,7 @@ handleSaveData(updatedData: Ticket) {
 
 handleDeleteData(id :number){
   this.tickets= this.tickets.filter((ticket:Ticket) => ticket.id !== id);
-  console.log(id);
   this.c.detectChanges();
-
+ // this.tickets= this.sortService.SortAfterDelete(this.tickets)
 }
 }
