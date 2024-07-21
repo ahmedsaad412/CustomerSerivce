@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SortIconDirective } from '../../Directives/sort-icon.directive';
 
 @Component({
-  selector: 'app-table-header',
+  selector: '[mytableheader]',
   standalone: true,
   imports: [CommonModule ,TranslateModule ,SortIconDirective],
   templateUrl: './table-header.component.html',
