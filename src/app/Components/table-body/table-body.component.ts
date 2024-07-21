@@ -41,7 +41,6 @@ export class TableBodyComponent {
   }
   getTicket(id :number){
     this.ticket= this.Tickets.find((ticket: Ticket) => ticket.id === id);
-
   }
   ///handle save and delete
   saveRow(editedItem :Ticket ){

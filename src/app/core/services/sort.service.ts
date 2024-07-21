@@ -2,22 +2,24 @@ import { Injectable } from '@angular/core';
 import { ITableHeader } from '../models/i-table-header';
 import { ITableData } from '../models/i-table-data';
 import { PaginationService } from './pagination.service';
+import { Ticket } from '../models/ticket';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SortService {
 tableData !:ITableData
+defaultSortHeader :ITableHeader |any
   constructor(private pagination :PaginationService) { }
-  applyDefaultSorting(page_number:number , data: ITableData) {
+  applyDefaultSorting(page_number:number, data: ITableData) {
     this.tableData = data;
-    const defaultSortHeader = this.tableData.headers.find(header => header.sortByDefault);
+    this.defaultSortHeader = this.tableData.headers.find(header => header.sortByDefault);
 
-    if (defaultSortHeader) {
-      
+    if (this.defaultSortHeader) {
+
       this.tableData.sort = {
-        sortBy: defaultSortHeader.text.toLowerCase(),
-        sortDirection: defaultSortHeader.sortDirection
+        sortBy: this.defaultSortHeader.text.toLowerCase(),
+        sortDirection: this.defaultSortHeader.sortDirection
       };
       this.sortData();
     }
@@ -43,4 +45,15 @@ tableData !:ITableData
       return 0;
     });
   }
+//   SortAfterDelete(data :Ticket[]){
+//     if (this.defaultSortHeader) {
+//       this.tableData.sort = {
+//         sortBy: this.defaultSortHeader.text.toLowerCase(),
+//         sortDirection: this.defaultSortHeader.sortDirection
+//       };
+//       this.tableData.data =data ;
+//       this.sortData();
+//       return this.pagination.paginateDate(this.pagination.pageNum ,this.tableData)
+//   }
+// }
 }
