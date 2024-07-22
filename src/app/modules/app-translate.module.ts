@@ -3,8 +3,9 @@ import { ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { TranslateCompiler, TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import TableOptions from '../core/TableOptions'
 
-const httpLoaderFactory =(http :HttpClient)=>new TranslateHttpLoader(http ,'assets/i18n/ticket/' ,'.json')
+const httpLoaderFactory =(http :HttpClient)=>new TranslateHttpLoader(http ,`assets/i18n/${TableOptions.Translation.folderName}` ,'.json')
 const translateCompilerFactory =()=>new TranslateMessageFormatCompiler;
 
 const translateLoader :Provider ={
