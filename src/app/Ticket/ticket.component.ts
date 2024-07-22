@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { ITableData } from '../core/models/i-table-data';
 import { Ticket } from '../core/models/ticket';
 import { GridViewComponent } from '../Components/grid-view.component';
+import { TestComponent } from '../Components/test/test.component';
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [GridViewComponent],
+  imports: [GridViewComponent,TestComponent],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css'
 })
