@@ -5,16 +5,18 @@ import { ITableData } from '../../core/models/i-table-data';
 import { FormsModule } from '@angular/forms';
 import { Ticket } from '../../core/models/ticket';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SharedModule } from '../../Shared/shared.module';
 @Component({
   selector: '[mytablebody]',
   standalone: true,
-  imports: [CommonModule,FormsModule ,TranslateModule],
+  imports: [SharedModule,FormsModule ],
   templateUrl: './table-body.component.html',
   styleUrl: './table-body.component.css'
 })
 export class TableBodyComponent {
   constructor(){}
-  @Input () tableData : ITableData |any ;
+  @Input () options : ITableData |any ;
+
   editingRowId :number =-1
   editingRowIndex :number =-1
   deletingRowId :number =-1

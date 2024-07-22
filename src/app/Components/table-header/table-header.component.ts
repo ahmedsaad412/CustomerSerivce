@@ -5,17 +5,20 @@ import { ITableData } from '../../core/models/i-table-data';
 import { SortService } from '../../core/services/sort.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SortIconDirective } from '../../Directives/sort-icon.directive';
+import { SharedModule } from '../../Shared/shared.module';
+import { Ticket } from '../../core/models/ticket';
 
 @Component({
   selector: '[mytableheader]',
   standalone: true,
-  imports: [CommonModule ,TranslateModule ,SortIconDirective],
+  imports: [SharedModule ,SortIconDirective],
   templateUrl: './table-header.component.html',
   styleUrl: './table-header.component.css'
 })
 export class TableHeaderComponent {
   constructor(){}
-@Input () tabledata :ITableData |any
+@Input () options :ITableData |any
+@Input () data !:Ticket[]
 @Input () language :boolean =true
 @Output() sendHeader: EventEmitter<any> = new EventEmitter<number>();
 sortDirection : any

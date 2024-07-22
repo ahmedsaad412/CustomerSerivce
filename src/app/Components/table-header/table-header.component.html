@@ -17,7 +17,7 @@
   </ng-container>
 </tr> -->
 <tr>
-  <ng-container *ngFor="let header of tabledata.headers">
+  <ng-container *ngFor="let header of options.headers">
     <th (click)="sortColumn(header)">
       <span *ngIf="header.sortable">
         <!-- <span [sortIcon]="sortDirection"></span> -->
