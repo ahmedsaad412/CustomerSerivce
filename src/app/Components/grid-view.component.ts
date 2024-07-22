@@ -10,12 +10,13 @@ import { TableBodyComponent } from './table-body/table-body.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { Ticket } from '../core/models/ticket';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { SharedModule } from '../Shared/shared.module';
 
 
 @Component({
   selector: 'app-grid-view',
   standalone: true,
-  imports: [CommonModule,TableHeaderComponent ,TableBodyComponent ,PaginationComponent ,TranslateModule],
+  imports: [TableHeaderComponent ,TableBodyComponent ,PaginationComponent ,SharedModule],
   templateUrl: './grid-view.component.html',
   styleUrl: './grid-view.component.css'
 })

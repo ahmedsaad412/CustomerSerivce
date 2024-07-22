@@ -5,11 +5,12 @@ import { ITableData } from '../../core/models/i-table-data';
 import { SortService } from '../../core/services/sort.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { SortIconDirective } from '../../Directives/sort-icon.directive';
+import { SharedModule } from '../../Shared/shared.module';
 
 @Component({
   selector: '[mytableheader]',
   standalone: true,
-  imports: [CommonModule ,TranslateModule ,SortIconDirective],
+  imports: [SharedModule ,SortIconDirective],
   templateUrl: './table-header.component.html',
   styleUrl: './table-header.component.css'
 })
