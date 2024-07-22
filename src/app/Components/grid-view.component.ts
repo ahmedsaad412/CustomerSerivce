@@ -38,7 +38,6 @@ sortByThisHeader :ITableHeader |any
 toggleLanguage(): void {
   this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
   this.translationService.SetDefaultLanguage(this.currentLanguage)
-
   this.c.detectChanges();
 }
 //data when pagination

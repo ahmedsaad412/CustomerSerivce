@@ -10,5 +10,7 @@ headers: ITableHeader[];
 pagination: ITablePagination;
 sort: ITableSort;
 actions: ITableAction[];
-
+Translation:{
+  folderName:string
+}
 }
