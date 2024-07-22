@@ -6,20 +6,22 @@
   <table class="table table-striped rounded-3 overflow-hidden" id="Tickets">
     <thead
       mytableheader
-      [tabledata]="tableData"
+      [options]="options"
       [language]="language"
+      [data]="data"
       (sendHeader)="handelSortHeader($event)"
     ></thead>
     <tbody
       mytablebody
-      [tableData]="tableData"
+      [options]="options"
       [Tickets]="tickets"
       (deleteData)="handleDeleteData($event)"
       (saveData)="handleSaveData($event)"
     ></tbody>
   </table>
   <app-pagination
-    [data]="tableData"
+    [options]="options"
+    [data]="data"
     (sendData)="handlePaginatedData($event)"
   ></app-pagination>
 </div>

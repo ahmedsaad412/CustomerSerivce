@@ -11,7 +11,19 @@ import { GridViewComponent } from '../Components/grid-view.component';
   styleUrl: './ticket.component.css'
 })
 export class TicketComponent {
-
+  data:any = [
+    { id: 1,status :'Not Avaliable', provider: 'John Doe', for :'mona',title:'hello' ,management :'no2', complainnumber:2262,mode :false},
+    { id: 2,status :' Avaliable', provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78,mode :true},
+    { id: 3,status :'avaliable', provider: 'will deep', for :'sara',title:'hello' ,management :'no2', complainnumber:8555,mode :true},
+    { id: 4,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
+    { id: 5,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
+    { id: 6,status :'Not Avaliable', provider: 'tamer ', for :'mona',title:'hello' ,management :'no1', complainnumber:999696,mode :true},
+    { id: 7,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
+    { id: 8,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
+    { id: 9,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
+    { id: 10,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no2', complainnumber:8898,mode :true},
+    { id: 11,status :'Not Avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
+  ] ;
   options: ITableData = {
     headers: [
       { text: 'ID', sortable: true  ,sortDirection: 'asc'  , sortByDefault: true} ,
@@ -22,19 +34,6 @@ export class TicketComponent {
       { text: 'ComplainNumber', sortable: true ,sortDirection: 'desc'},
       { text: 'Status',  sortable: true ,sortDirection: 'desc'},
       { text: 'Actions',  sortable: false,sortDirection: 'desc'},
-    ],
-    data: [
-      { id: 1,status :'Not Avaliable', provider: 'John Doe', for :'mona',title:'hello' ,management :'no2', complainnumber:2262,mode :false},
-      { id: 2,status :' Avaliable', provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78,mode :true},
-      { id: 3,status :'avaliable', provider: 'will deep', for :'sara',title:'hello' ,management :'no2', complainnumber:8555,mode :true},
-      { id: 4,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
-      { id: 5,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
-      { id: 6,status :'Not Avaliable', provider: 'tamer ', for :'mona',title:'hello' ,management :'no1', complainnumber:999696,mode :true},
-      { id: 7,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
-      { id: 8,status :'Not Avaliable', provider: 'Jane deep', for :'mona',title:'hello' ,management :'no2', complainnumber:15515,mode :true},
-      { id: 9,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
-      { id: 10,status :'avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no2', complainnumber:8898,mode :true},
-      { id: 11,status :'Not Avaliable', provider: 'will Smith', for :'sara',title:'hi' ,management :'no1', complainnumber:8898,mode :true},
     ],
     pagination: { pageSize: 3, currentPage: 1 },
     sort: { sortBy: '', sortDirection: '' },

@@ -1,3 +1,4 @@
+
 // import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 // import { provideRouter } from '@angular/router';
 
@@ -30,5 +31,4 @@ import { AppTranslateModule } from './modules/app-translate.module';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes) ,importProvidersFrom(HttpClientModule) ,importProvidersFrom(AppTranslateModule.forRoot())]
 };
-
 //for translation : https://www.codeandweb.com/babeledit/tutorials/how-to-translate-your-angular-app-with-ngx-translate

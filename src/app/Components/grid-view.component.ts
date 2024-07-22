@@ -24,12 +24,13 @@ export class GridViewComponent implements OnInit {
 constructor(private c: ChangeDetectorRef ,private paginatedData :PaginationService ,private sortService :SortService ,private translationService:TranslationService,private translate :TranslateService){
 }
 currentLanguage: string = 'ar';
-//data on reload page
+
   ngOnInit(): void {
     this.translationService.SetDefaultLanguage(this.currentLanguage)
-    this.tickets= this.sortService.applyDefaultSorting(1,this.tableData)
+    this.tickets= this.sortService.applyDefaultSorting(1,this.options ,this.data)
   }
-@Input() tableData :ITableData | any  ;
+@Input() options :ITableData | any  ;
+@Input() data :Ticket[]=[]  ;
 tickets :Ticket[] |any
 language :boolean =true;
 sortByThisHeader :ITableHeader |any
@@ -42,13 +43,13 @@ toggleLanguage(): void {
 }
 //data when pagination
 handlePaginatedData(page_number:number) {
-this.tickets= this.paginatedData.paginateDate(page_number,this.tableData)
+this.tickets= this.paginatedData.paginateDate(page_number,this.options,this.data)
 this.c.detectChanges();
 }
 //data after sorting
 handelSortHeader(header:ITableHeader){
   this.sortByThisHeader=header;
-  this.tickets= this.sortService.sortColumn(this.sortByThisHeader ,this.tableData);
+  this.tickets= this.sortService.sortColumn(this.sortByThisHeader ,this.options);
   this.c.detectChanges();
 }
 

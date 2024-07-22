@@ -4,7 +4,7 @@ import { TranslateCompiler, TranslateLoader, TranslateModule } from '@ngx-transl
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 
-const httpLoaderFactory =(http :HttpClient)=>new TranslateHttpLoader(http ,'assets/i18n/' ,'.json')
+const httpLoaderFactory =(http :HttpClient)=>new TranslateHttpLoader(http ,'assets/i18n/ticket/' ,'.json')
 const translateCompilerFactory =()=>new TranslateMessageFormatCompiler;
 
 const translateLoader :Provider ={

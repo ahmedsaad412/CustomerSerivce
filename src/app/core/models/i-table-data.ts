@@ -6,7 +6,7 @@ import { Ticket } from "./ticket";
 
 export interface ITableData {
 headers: ITableHeader[];
-data: Ticket[];
+
 pagination: ITablePagination;
 sort: ITableSort;
 actions: ITableAction[];

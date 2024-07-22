@@ -15,7 +15,8 @@ import { SharedModule } from '../../Shared/shared.module';
 })
 export class TableBodyComponent {
   constructor(){}
-  @Input () tableData : ITableData |any ;
+  @Input () options : ITableData |any ;
+
   editingRowId :number =-1
   editingRowIndex :number =-1
   deletingRowId :number =-1
