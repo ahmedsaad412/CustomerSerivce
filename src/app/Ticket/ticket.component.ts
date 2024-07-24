@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ITableData } from '../core/models/i-table-data';
 import { Ticket } from '../core/models/ticket';
 import { GridViewComponent } from '../Components/grid-view.component';
 import { FolderNameService } from '../core/services/folder-name.service';
 import TableOptions from '../core/TableOptions'
+import { CustomerService } from '../core/services/customer.service';
+import { GridDto } from '../core/DTO/Grid';
 @Component({
   selector: 'app-ticket',
   standalone: true,
@@ -11,8 +13,17 @@ import TableOptions from '../core/TableOptions'
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css'
 })
-export class TicketComponent {
-  constructor(private folderNameService :FolderNameService ){}
+export class TicketComponent implements OnInit {
+  customers!:GridDto;
+  
+  constructor(private customerService :CustomerService){}
+  ngOnInit(): void {
+    this.customerService.getUsers().subscribe((data) => {
+      this.customers = data;
+      console.log(data);
+      console.log(this.customers);
+    });
+  }
   data:any = [
     { id: 1,status :'Not Avaliable', provider: 'John Doe', for :'mona',title:'hello' ,management :'no2', complainnumber:2262,mode :false},
     { id: 2,status :' Avaliable', provider: 'tamer ', for :'mona',title:'hi' ,management :'no1', complainnumber:78,mode :true},

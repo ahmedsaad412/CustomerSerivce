@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SortIconDirective } from '../../Directives/sort-icon.directive';
 import { SharedModule } from '../../Shared/shared.module';
 import { Ticket } from '../../core/models/ticket';
+import { CustomerDto } from '../../core/DTO/Customers';
 
 @Component({
   selector: '[mytableheader]',
@@ -18,7 +19,6 @@ import { Ticket } from '../../core/models/ticket';
 export class TableHeaderComponent {
   constructor(){}
 @Input () options :ITableData |any
-@Input () data !:Ticket[]
 @Input () language :boolean =true
 @Output() sendHeader: EventEmitter<any> = new EventEmitter<number>();
 sortDirection : any

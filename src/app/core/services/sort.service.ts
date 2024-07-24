@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ITableHeader } from '../models/i-table-header';
 import { ITableData } from '../models/i-table-data';
 import { PaginationService } from './pagination.service';
-import { Ticket } from '../models/ticket';
+
+import { CustomerDto } from '../DTO/Customers';
+import { GridDto } from '../DTO/Grid';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +12,11 @@ import { Ticket } from '../models/ticket';
 export class SortService {
 tableData !:ITableData
 defaultSortHeader :ITableHeader |any
-data !:Ticket[]
+data !:GridDto
   constructor(private pagination :PaginationService) { }
-  applyDefaultSorting(page_number:number, options: ITableData ,data :Ticket[]) {
+  applyDefaultSorting(page_number:number, options: ITableData ,data :CustomerDto[]) {
     this.tableData = options;
-    this.data=data;
+    this.data.data=data;
     this.defaultSortHeader = this.tableData.headers.find(header => header.sortByDefault);
 
     if (this.defaultSortHeader) {
@@ -41,7 +43,7 @@ data !:Ticket[]
   private sortData() {
     const sortBy = this.tableData.sort.sortBy;
     const sortDirection = this.tableData.sort.sortDirection === 'asc' ? 1 : -1;
-    this.data.sort((object1:any, object2: any) => {
+    this.data.data.sort((object1:any, object2: any) => {
       if (object1[sortBy] < object2[sortBy]) return -sortDirection;
       if (object1[sortBy] > object2[sortBy]) return sortDirection;
       return 0;

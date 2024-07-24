@@ -8,9 +8,11 @@ import { SortService } from '../core/services/sort.service';
 import { TableHeaderComponent } from './table-header/table-header.component';
 import { TableBodyComponent } from './table-body/table-body.component';
 import { PaginationComponent } from './pagination/pagination.component';
-import { Ticket } from '../core/models/ticket';
+
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from '../Shared/shared.module';
+import { CustomerDto } from '../core/DTO/Customers';
+import { GridDto } from '../core/DTO/Grid';
 
 
 @Component({
@@ -27,11 +29,12 @@ currentLanguage: string = 'ar';
 
   ngOnInit(): void {
     this.translationService.SetDefaultLanguage(this.currentLanguage)
-    this.tickets= this.sortService.applyDefaultSorting(1,this.options ,this.data)
+    this.tickets= this.sortService.applyDefaultSorting(1,this.options ,this.data.data)
   }
 @Input() options :ITableData | any  ;
-@Input() data :Ticket[]=[]  ;
-tickets :Ticket[] |any
+@Input() data !:GridDto  ;
+
+tickets :CustomerDto[] |any
 language :boolean =true;
 sortByThisHeader :ITableHeader |any
 
@@ -52,9 +55,9 @@ handelSortHeader(header:ITableHeader){
   this.c.detectChanges();
 }
 
-handleSaveData(updatedData: Ticket) {
+handleSaveData(updatedData: CustomerDto) {
 
-  this.tickets.map((a:Ticket)=>{
+  this.tickets.map((a:CustomerDto)=>{
     if(a.id==updatedData.id){
       return updatedData
     }
@@ -64,7 +67,7 @@ handleSaveData(updatedData: Ticket) {
 }
 
 handleDeleteData(id :number){
-  this.tickets= this.tickets.filter((ticket:Ticket) => ticket.id !== id);
+  this.tickets= this.tickets.filter((ticket:CustomerDto) => ticket.id !== id);
   this.c.detectChanges();
  // this.tickets= this.sortService.SortAfterDelete(this.tickets)
 }

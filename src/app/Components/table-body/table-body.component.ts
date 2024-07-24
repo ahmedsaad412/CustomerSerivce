@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ITableData } from '../../core/models/i-table-data';
 import { FormsModule } from '@angular/forms';
-import { Ticket } from '../../core/models/ticket';
+
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from '../../Shared/shared.module';
+import { CustomerDto } from '../../core/DTO/Customers';
 @Component({
   selector: '[mytablebody]',
   standalone: true,
@@ -21,13 +22,13 @@ export class TableBodyComponent {
   editingRowIndex :number =-1
   deletingRowId :number =-1
   shallowCopy :any []=[]
- @Input () Tickets :Ticket[] |any;
+ @Input () Tickets :CustomerDto[] |any;
  @Output() saveData: EventEmitter<any> = new EventEmitter<any>();
  @Output() deleteData: EventEmitter<any> = new EventEmitter<number>();
 
- ticket :Ticket |any
+ ticket :CustomerDto |any
 
- buttonClicked(action :string ,item : Ticket ,index :number){
+ buttonClicked(action :string ,item : CustomerDto ,index :number){
     switch(action){
       case 'edit' :
       this.editingRowId =item.id
@@ -42,10 +43,10 @@ export class TableBodyComponent {
     }
   }
   getTicket(id :number){
-    this.ticket= this.Tickets.find((ticket: Ticket) => ticket.id === id);
+    this.ticket= this.Tickets.find((ticket: CustomerDto) => ticket.id === id);
   }
   ///handle save and delete
-  saveRow(editedItem :Ticket ){
+  saveRow(editedItem :CustomerDto ){
     this.saveData.emit(editedItem);
     this.editingRowIndex = -1;
   }
@@ -55,15 +56,15 @@ export class TableBodyComponent {
     this.editingRowIndex = -1;
   }
 
-  deleteRow(row :Ticket){
+  deleteRow(row :CustomerDto){
     this.deleteData.emit(row.id);
   }
-  ToggleMode(item :Ticket){
-    this.ticket= this.Tickets.find((ticket: Ticket) => ticket.id ===item.id);
-    console.log('before test '+ this.ticket.mode);
-    this.ticket.mode =!item.mode;
-    console.log('after test '+ this.ticket.mode);
+  // ToggleMode(item :CustomerDto){
+  //   this.ticket= this.Tickets.find((ticket: CustomerDto) => ticket.id ===item.id);
+  //   console.log('before test '+ this.ticket.mode);
+  //   this.ticket.mode =!item.mode;
+  //   console.log('after test '+ this.ticket.mode);
 
 
-  }
+  // }
 }

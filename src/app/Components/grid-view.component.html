@@ -8,7 +8,6 @@
       mytableheader
       [options]="options"
       [language]="language"
-      [data]="data"
       (sendHeader)="handelSortHeader($event)"
     ></thead>
     <tbody
@@ -21,7 +20,7 @@
   </table>
   <app-pagination
     [options]="options"
-    [data]="data"
+    [data]="data.data"
     (sendData)="handlePaginatedData($event)"
   ></app-pagination>
 </div>

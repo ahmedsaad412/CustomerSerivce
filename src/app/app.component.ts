@@ -7,11 +7,12 @@ import { SortIconDirective } from './Directives/sort-icon.directive';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 import { TicketComponent } from './Ticket/ticket.component';
+import { NavbarComponent } from './Components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet ,SortIconDirective ,TranslateModule ,TicketComponent],
+  imports: [RouterOutlet ,SortIconDirective ,TranslateModule ,TicketComponent ,NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
