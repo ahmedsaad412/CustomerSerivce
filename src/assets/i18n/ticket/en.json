@@ -1,12 +1,10 @@
 {
   "ID": "ID",
-  "Provider": "Provider",
-  "For": "For",
-  "Title": "Title",
-  "Management": "Management",
-  "ComplainNumber": "Complain Number",
-  "Status": "Status",
+  "FirstName": "First Name",
+  "LastName": "Last Name",
+  "Email": "Email",
+  "PhoneNumber": "Phone Number",
   "Actions": "Actions",
   "Delete": "Delete",
-  "Edit":"Edit"
+  "Edit": "Edit"
 }

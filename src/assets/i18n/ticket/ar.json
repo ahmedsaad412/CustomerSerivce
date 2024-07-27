@@ -1,12 +1,10 @@
 {
   "ID": "رقم الهوية",
-  "Provider": "مقدم البلاغ",
-  "For": "لدى",
-  "Title": "العنوان",
-  "Management": "الإدارة",
-  "ComplainNumber": "رقم البلاغ",
-  "Status": "الحالة",
-  "Actions": "التحكم ",
+  "FirstName": "الإسم الأول",
+  "LastName": "اسم العائلة",
+  "Email": "البريد الإلكترونى",
+  "PhoneNumber": "رقم الجوال",
+  "Actions": "التحكم",
   "Delete": "حذف",
-  "Edit":"تعديل"
+  "Edit": "تعديل"
 }

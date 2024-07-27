@@ -1,10 +1,9 @@
 export interface Ticket {
-  id : number ,
-  provider :string,
-  management :string ,
-  for :string ,
-  title :string ,
-  complainnumber :number,
-  status :string ,
-  mode : boolean
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phonenumber: string;
+  isdeleted: boolean;
+  mode: boolean;
 }
