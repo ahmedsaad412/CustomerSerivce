@@ -2,7 +2,21 @@
   <button class="btn btn-primary" (click)="toggleLanguage()">
     {{ currentLanguage === "ar" ? " اللغة الإنجليزية" : "Arabic" }}
   </button>
+  <form [formGroup]="filtersForm" (ngSubmit)="onSearch()">
+    <div>
 
+      <input id="firstName" formControlName="firstName" placeholder="First Name" />
+    </div>
+    <div>
+
+      <input id="lastName" formControlName="lastName" placeholder="Last Name" />
+    </div>
+    <div>
+
+      <input id="phoneNumber" formControlName="phoneNumber" placeholder="Phone Number" />
+    </div>
+    <button type="submit">Search</button>
+  </form>
   <table class="table table-striped rounded-3 overflow-hidden" id="Tickets">
     <thead
       mytableheader

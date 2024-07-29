@@ -1,10 +1,10 @@
 {
-  "ID": "ID",
-  "FirstName": "First Name",
-  "LastName": "Last Name",
-  "Email": "Email",
-  "PhoneNumber": "Phone Number",
-  "Actions": "Actions",
+  "id": "ID",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "phoneNumber": "Phone Number",
+  "actions": "Actions",
   "Delete": "Delete",
   "Edit": "Edit"
 }

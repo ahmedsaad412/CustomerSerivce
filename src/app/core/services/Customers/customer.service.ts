@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PagingParameters } from '../../models/paging-parameters';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { PageDto } from '../../models/page-dto';
 
 @Injectable({
@@ -10,7 +10,13 @@ import { PageDto } from '../../models/page-dto';
 export class CustomerService {
   constructor(private http: HttpClient) {}
 
-  getPage(url: string, pagingOptions: PagingParameters): Observable<PageDto> {
-    return this.http.post<any>(url, pagingOptions);
+  FetchPage(url: string, pagingOptions: PagingParameters): Observable<PageDto> {
+    debugger
+    return this.http.post<PageDto>(url, pagingOptions).pipe(
+      catchError(error => {
+        console.error('Error fetching page:', error);
+        return throwError(() => new Error('Error fetching page'));
+      })
+    );
   }
 }

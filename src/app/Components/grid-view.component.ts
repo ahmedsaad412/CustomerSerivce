@@ -4,15 +4,19 @@ import { PaginationService } from '../core/services/pagination.service';
 import { ITableHeader } from '../core/models/i-table-header';
 import { ITableData } from '../core/models/i-table-data';
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { SortService } from '../core/services/sort.service';
 import { TableHeaderComponent } from './table-header/table-header.component';
 import { TableBodyComponent } from './table-body/table-body.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { Ticket } from '../core/models/ticket';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
 import { SharedModule } from '../Shared/shared.module';
 import { CustomerService } from '../core/services/Customers/customer.service';
+import TableOptions from '../core/TableOptions';
+import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
+
+import { Filters } from '../core/models/filters';
 
 @Component({
   selector: 'app-grid-view',
@@ -22,6 +26,7 @@ import { CustomerService } from '../core/services/Customers/customer.service';
     TableBodyComponent,
     PaginationComponent,
     SharedModule,
+    ReactiveFormsModule
   ],
   templateUrl: './grid-view.component.html',
   styleUrl: './grid-view.component.css',
@@ -32,32 +37,40 @@ export class GridViewComponent implements OnInit {
     private paginatedData: PaginationService,
     private sortService: SortService,
     private translationService: TranslationService,
-    private translate: TranslateService,
-    private customerService: CustomerService
+
+    private customerService: CustomerService,
+    private fb: FormBuilder
   ) {}
+  filtersForm: FormGroup = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    phoneNumber: ['']
+  });
   currentLanguage: string = 'ar';
   @Input() options!: ITableData;
   @Input() data: Ticket[] = [];
   tickets: Ticket[] | any;
   @Input() Url: string = '';
   @Input() mode: string = '';
-
   language: boolean = true;
   sortByThisHeader: ITableHeader | any;
+  defultHeader :ITableHeader|any =TableOptions.headers.find(h=>h.sortByDefault=true)
+
   pagingParameters: PagingParameters = {
     pageNumber: 1,
-    pageSize: 2,
-    sortProperty: 'lastname',
-    sortDirection: 'asc',
-    searchProperty: 'firstname',
-    searchText: 'a',
+    pageSize: 3,
+    sortProperty: this.defultHeader.text,
+    sortDirection: this.defultHeader.sortDirection,
+    filters :{}
   };
   ngOnInit(): void {
     if (this.mode == 'Server') {
       this.translationService.SetDefaultLanguage(this.currentLanguage);
-      this.customerService.getPage(this.Url, this.pagingParameters).subscribe({
+      this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
           this.tickets = data.items;
+          console.log(data);
+          console.log(this.tickets);
         },
         error: (err) => {
           console.error('Error fetching page data:', err);
@@ -72,17 +85,25 @@ export class GridViewComponent implements OnInit {
       );
     }
   }
+  onSearch(): void {
+    const filters: Filters = this.filtersForm.value;
+    console.log('Search filters:', filters);
+    this.pagingParameters.filters = filters ;
+    this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
+      next: (data) => {
+        this.tickets = data.items;
+      },
+      error: (err) => {
+        console.error('Error fetching page data:', err);
+      },
+    });
 
-  toggleLanguage(): void {
-    this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
-    this.translationService.SetDefaultLanguage(this.currentLanguage);
-    this.c.detectChanges();
   }
   //data when pagination
   handlePaginatedData(page_number: number) {
     if (this.mode == 'Server') {
       this.paginatedData.pageNum = page_number;
-      this.customerService.getPage(this.Url, this.pagingParameters).subscribe({
+      this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
           this.tickets = data.items;
         },
@@ -105,7 +126,7 @@ export class GridViewComponent implements OnInit {
     if (this.mode == 'Server') {
       this.pagingParameters.sortProperty = header.text;
       this.pagingParameters.sortDirection = header.sortDirection;
-      this.customerService.getPage(this.Url, this.pagingParameters).subscribe({
+      this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
           this.tickets = data.items;
         },
@@ -138,5 +159,10 @@ export class GridViewComponent implements OnInit {
     this.tickets = this.tickets.filter((ticket: Ticket) => ticket.id !== id);
     this.c.detectChanges();
     // this.tickets= this.sortService.SortAfterDelete(this.tickets)
+  }
+  toggleLanguage(): void {
+    this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
+    this.translationService.SetDefaultLanguage(this.currentLanguage);
+    this.c.detectChanges();
   }
 }

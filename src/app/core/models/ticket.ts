@@ -1,9 +1,9 @@
 export interface Ticket {
   id: number;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  phonenumber: string;
-  isdeleted: boolean;
+  phoneNumber: string;
+  isDeleted: boolean;
   mode: boolean;
 }
