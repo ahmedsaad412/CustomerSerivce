@@ -11,7 +11,6 @@ export class CustomerService {
   constructor(private http: HttpClient) {}
 
   FetchPage(url: string, pagingOptions: PagingParameters): Observable<PageDto> {
-    debugger
     return this.http.post<PageDto>(url, pagingOptions).pipe(
       catchError(error => {
         console.error('Error fetching page:', error);

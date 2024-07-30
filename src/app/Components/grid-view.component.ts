@@ -37,40 +37,37 @@ export class GridViewComponent implements OnInit {
     private paginatedData: PaginationService,
     private sortService: SortService,
     private translationService: TranslationService,
-
     private customerService: CustomerService,
-    private fb: FormBuilder
   ) {}
-  filtersForm: FormGroup = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    phoneNumber: ['']
-  });
+  totalPages!: number;
   currentLanguage: string = 'ar';
   @Input() options!: ITableData;
   @Input() data: Ticket[] = [];
   tickets: Ticket[] | any;
+  totalRecords !:number
   @Input() Url: string = '';
   @Input() mode: string = '';
+  systemMode :string=''
   language: boolean = true;
   sortByThisHeader: ITableHeader | any;
   defultHeader :ITableHeader|any =TableOptions.headers.find(h=>h.sortByDefault=true)
 
   pagingParameters: PagingParameters = {
     pageNumber: 1,
-    pageSize: 3,
+    pageSize: 2,
     sortProperty: this.defultHeader.text,
     sortDirection: this.defultHeader.sortDirection,
     filters :{}
   };
   ngOnInit(): void {
     if (this.mode == 'Server') {
+      this.systemMode="Server"
       this.translationService.SetDefaultLanguage(this.currentLanguage);
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
+          this.totalRecords=data.totalItemCount;
           this.tickets = data.items;
-          console.log(data);
-          console.log(this.tickets);
+
         },
         error: (err) => {
           console.error('Error fetching page data:', err);
@@ -85,26 +82,27 @@ export class GridViewComponent implements OnInit {
       );
     }
   }
-  onSearch(): void {
-    const filters: Filters = this.filtersForm.value;
-    console.log('Search filters:', filters);
-    this.pagingParameters.filters = filters ;
-    this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
-      next: (data) => {
-        this.tickets = data.items;
-      },
-      error: (err) => {
-        console.error('Error fetching page data:', err);
-      },
-    });
-
-  }
-  //data when pagination
-  handlePaginatedData(page_number: number) {
+  updateFilters(filters: Filters) {
+    this.pagingParameters.filters = filters;
     if (this.mode == 'Server') {
-      this.paginatedData.pageNum = page_number;
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
+          this.totalRecords=data.totalItemCount;
+          this.tickets = data.items;
+        },
+        error: (err) => {
+          console.error('Error fetching page data:', err);
+        },
+      });
+    }
+    this.c.detectChanges();
+  }
+  handlePaginatedData(page_number: number) {
+    if (this.mode == 'Server') {
+      this.pagingParameters.pageNumber = page_number;
+      this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
+        next: (data) => {
+          this.totalRecords=data.totalItemCount;
           this.tickets = data.items;
         },
         error: (err) => {
@@ -124,11 +122,14 @@ export class GridViewComponent implements OnInit {
   //data after sorting
   handelSortHeader(header: ITableHeader) {
     if (this.mode == 'Server') {
+
       this.pagingParameters.sortProperty = header.text;
       this.pagingParameters.sortDirection = header.sortDirection;
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
+          this.totalRecords=data.totalItemCount;
           this.tickets = data.items;
+
         },
         error: (err) => {
           console.error('Error fetching page data:', err);

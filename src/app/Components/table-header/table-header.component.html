@@ -20,8 +20,7 @@
   <ng-container *ngFor="let header of options.headers">
     <th (click)="sortColumn(header)">
       <span *ngIf="header.sortable">
-        <!-- <span [sortIcon]="sortDirection"></span> -->
-        <i [sortIcon]="sortDirection" class="bi" ></i>
+        <i [sortIcon]="isCurrentSortHeader(header) ? sortDirection : 'none'" class="bi"></i>
       </span>
       {{ header.text | translate }}
     </th>

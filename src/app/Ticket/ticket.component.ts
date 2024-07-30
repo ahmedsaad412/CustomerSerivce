@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ITableData } from '../core/models/i-table-data';
 import { Ticket } from '../core/models/ticket';
 import { GridViewComponent } from '../Components/grid-view.component';
-
+import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
 import TableOptions from '../core/TableOptions';
-import { first } from 'rxjs';
+import { Filters } from '../core/models/filters';
+
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [GridViewComponent],
+  imports: [GridViewComponent,ReactiveFormsModule,ReactiveFormsModule],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',
 })
 export class TicketComponent {
-  constructor() {}
+  @ViewChild(GridViewComponent) gridView!: GridViewComponent;
+  pagingParameters: any;
+  constructor(private fb :FormBuilder ) {}
   url: string = 'https://localhost:7122/api/Customers/GetCustomerPage';
   mode: string = 'Server';
   data: Ticket[] = [
@@ -123,4 +126,13 @@ export class TicketComponent {
     },
   ];
   options: ITableData = TableOptions;
+  filtersForm: FormGroup = this.fb.group({
+    firstName: [''],
+    lastName: [''],
+    phoneNumber: ['']
+  });
+  onSearch() {
+    const filters = this.filtersForm.value;
+    this.gridView.updateFilters(filters);
+  }
 }
