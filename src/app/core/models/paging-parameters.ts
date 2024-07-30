@@ -1,10 +1,9 @@
-import { Filters } from "./filters";
+import { Filter } from "./filter";
 
 export interface PagingParameters {
   pageNumber: number;
   pageSize: number;
   sortProperty: string;
   sortDirection: string;
-  filters? :Filters
-
+  filters? :Filter[]
 }

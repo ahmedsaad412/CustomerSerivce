@@ -1,21 +1,20 @@
-<form [formGroup]="filtersForm" (ngSubmit)="onSearch()" >
-  <div>
-
-    <input id="firstName" formControlName="firstName" placeholder="First Name" />
-  </div>
-  <div>
-
-    <input id="lastName" formControlName="lastName" placeholder="Last Name" />
-  </div>
-  <div>
-
-    <input id="phoneNumber" formControlName="phoneNumber" placeholder="Phone Number" />
-  </div>
-  <button type="submit">Search</button>
-</form>
-<app-grid-view
-  [options]="options"
-  [data]="data"
-  [Url]="url"
-  [mode]="mode"
-></app-grid-view>
+<div id="container">
+  <form [formGroup]="filtersForm" (ngSubmit)="onSearch()">
+    <div>
+      <input id="firstName" formControlName="firstName" placeholder="First Name" />
+    </div>
+    <div>
+      <input id="lastName" formControlName="lastName" placeholder="Last Name" />
+    </div>
+    <div>
+      <input id="phoneNumber" formControlName="phoneNumber" placeholder="Phone Number" />
+    </div>
+    <button type="submit"><span>{{'search'|translate}}</span></button>
+  </form>
+  <app-grid-view
+    [options]="options"
+    [data]="data"
+    [Url]="url"
+    [mode]="mode"
+  ></app-grid-view>
+</div>

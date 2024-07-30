@@ -15,9 +15,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { CustomerService } from '../core/services/Customers/customer.service';
 import TableOptions from '../core/TableOptions';
 import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
-
-import { Filters } from '../core/models/filters';
-
+import { Filter } from '../core/models/filter';
 @Component({
   selector: 'app-grid-view',
   standalone: true,
@@ -57,7 +55,7 @@ export class GridViewComponent implements OnInit {
     pageSize: 2,
     sortProperty: this.defultHeader.text,
     sortDirection: this.defultHeader.sortDirection,
-    filters :{}
+    filters :[]
   };
   ngOnInit(): void {
     if (this.mode == 'Server') {
@@ -82,7 +80,7 @@ export class GridViewComponent implements OnInit {
       );
     }
   }
-  updateFilters(filters: Filters) {
+  updateFilters(filters: Filter[]) {
     this.pagingParameters.filters = filters;
     if (this.mode == 'Server') {
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({

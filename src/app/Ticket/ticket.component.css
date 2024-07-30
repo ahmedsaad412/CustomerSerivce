@@ -1,0 +1,36 @@
+
+#container {
+  display: flex;
+  flex-direction: column; /* Stack form and component vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically if container has height */
+  gap: 2rem; /* Optional: Space between form and component */
+  padding-top: 2rem; /* Add space from the top of the container */
+  min-height: 20vh; /* Ensure container takes at least full viewport height */
+}
+
+/* Ensure form takes only necessary space */
+form {
+  display: flex;
+  flex-direction: row; /* Align form elements in a row */
+  gap: 1rem; /* Space between form elements */
+  flex-wrap: wrap; /* Allow wrapping if screen is too small */
+}
+
+/* Ensure each form control is spaced and aligned */
+form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Space between input label and input field */
+}
+
+/* Style for form inputs */
+form input {
+  width: 150px; /* Adjust width as needed */
+}
+
+/* Style for the submit button */
+form button {
+  display: flex;
+  align-items: center; /* Center text vertically */
+}

@@ -1,22 +1,30 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { ITableData } from '../core/models/i-table-data';
 import { Ticket } from '../core/models/ticket';
 import { GridViewComponent } from '../Components/grid-view.component';
 import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
 import TableOptions from '../core/TableOptions';
-import { Filters } from '../core/models/filters';
+import { SharedModule } from '../Shared/shared.module';
+import { TranslationService } from '../core/services/translation.service';
+
 
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [GridViewComponent,ReactiveFormsModule,ReactiveFormsModule],
+  imports: [GridViewComponent,ReactiveFormsModule,ReactiveFormsModule,SharedModule],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',
 })
-export class TicketComponent {
+export class TicketComponent implements OnInit {
   @ViewChild(GridViewComponent) gridView!: GridViewComponent;
   pagingParameters: any;
-  constructor(private fb :FormBuilder ) {}
+  search :string =''
+  currentLanguage: string = 'ar';
+  constructor(private fb :FormBuilder,private translationService: TranslationService, private c: ChangeDetectorRef) {}
+  ngOnInit(): void {
+    this.translationService.SetDefaultLanguage(this.currentLanguage);
+    this.c.detectChanges();
+  }
   url: string = 'https://localhost:7122/api/Customers/GetCustomerPage';
   mode: string = 'Server';
   data: Ticket[] = [
@@ -132,7 +140,11 @@ export class TicketComponent {
     phoneNumber: ['']
   });
   onSearch() {
-    const filters = this.filtersForm.value;
-    this.gridView.updateFilters(filters);
+    if (this.filtersForm.valid) {
+      const filters = Object.keys(this.filtersForm.value).map(key => ({
+        propertyName: key,
+        propertyValue: this.filtersForm.value[key]
+      })).filter(filter => filter.propertyValue);
+     this.gridView.updateFilters(filters);
   }
-}
+}}
