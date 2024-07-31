@@ -39,4 +39,7 @@ export class TableHeaderComponent {
   isCurrentSortHeader(header: ITableHeader): boolean {
     return this.currentSortHeader === header;
   }
+  SelectAll(){
+    
+  }
 }

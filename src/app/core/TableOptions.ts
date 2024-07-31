@@ -7,6 +7,8 @@ const TableOptions: ITableData = {
     { text: 'lastName', sortable: true, sortDirection: 'desc' },
     { text: 'email', sortable: true, sortDirection: 'desc' },
     { text: 'phoneNumber', sortable: true, sortDirection: 'desc' },
+    { text: 'commercialId', sortable: true, sortDirection: 'desc' },
+    { text: 'birthDate', sortable: true, sortDirection: 'desc' },
     { text: 'actions', sortable: false, sortDirection: 'desc' },
   ],
   pagination: { pageSize: 3, currentPage: 1 },
@@ -24,7 +26,7 @@ const TableOptions: ITableData = {
       type: 'delete',
       label: 'Delete',
       Rule: (obj: Ticket) => {
-        return (obj['isDeleted'] = true);
+        return (obj['isDeleted'] = false);
       },
     },
   ],

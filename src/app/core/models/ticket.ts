@@ -4,6 +4,8 @@ export interface Ticket {
   lastName: string;
   email: string;
   phoneNumber: string;
+  commercialId: number;
+  birthDate: Date;
   isDeleted: boolean;
   mode: boolean;
 }

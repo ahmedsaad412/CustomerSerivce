@@ -65,7 +65,9 @@ export class GridViewComponent implements OnInit {
         next: (data) => {
           this.totalRecords=data.totalItemCount;
           this.tickets = data.items;
-
+          this.tickets.forEach((e: any) => {
+            console.log(e);
+          });
         },
         error: (err) => {
           console.error('Error fetching page data:', err);
@@ -82,6 +84,7 @@ export class GridViewComponent implements OnInit {
   }
   updateFilters(filters: Filter[]) {
     this.pagingParameters.filters = filters;
+    console.log(this.pagingParameters.filters );
     if (this.mode == 'Server') {
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {

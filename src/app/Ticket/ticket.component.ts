@@ -35,7 +35,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hello',
       isDeleted: false,
-      mode: false,
+      commercialId:1253181,
+      mode: false,  birthDate:new Date(),
     },
     {
       id: 2,
@@ -44,7 +45,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hi',
       isDeleted: false,
-      mode: true,
+      commercialId:125481,
+      mode: true, birthDate:new Date(),
     },
     {
       id: 3,
@@ -53,7 +55,8 @@ export class TicketComponent implements OnInit {
       email: 'sara',
       phoneNumber: 'hello',
       isDeleted: false,
-
+      commercialId:1226181,
+      birthDate:new Date(),
       mode: true,
     },
     {
@@ -63,7 +66,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hello',
       isDeleted: false,
-      mode: true,
+      commercialId:1255181,
+      mode: true, birthDate:new Date(),
     },
     {
       id: 5,
@@ -72,7 +76,8 @@ export class TicketComponent implements OnInit {
       email: 'sara',
       phoneNumber: 'hi',
       isDeleted: false,
-
+      commercialId:1258181,
+      birthDate:new Date(),
       mode: true,
     },
     {
@@ -82,7 +87,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hello',
       isDeleted: false,
-      mode: true,
+      commercialId:1259181,
+      mode: true, birthDate:new Date(),
     },
     {
       id: 7,
@@ -91,7 +97,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hello',
       isDeleted: false,
-      mode: true,
+      commercialId:1275181,
+      mode: true, birthDate:new Date(),
     },
     {
       id: 8,
@@ -100,7 +107,8 @@ export class TicketComponent implements OnInit {
       email: 'mona',
       phoneNumber: 'hello',
       isDeleted: false,
-      mode: true,
+      commercialId:1355181,
+      mode: true, birthDate:new Date(),
     },
     {
       id: 9,
@@ -109,7 +117,8 @@ export class TicketComponent implements OnInit {
       email: 'sara',
       phoneNumber: 'hi',
       isDeleted: false,
-
+      commercialId:2255181,
+      birthDate:new Date(),
       mode: true,
     },
     {
@@ -119,7 +128,8 @@ export class TicketComponent implements OnInit {
       email: 'sara',
       phoneNumber: 'hi',
       isDeleted: false,
-
+      commercialId:3255181,
+      birthDate:new Date(),
       mode: true,
     },
     {
@@ -129,7 +139,8 @@ export class TicketComponent implements OnInit {
       email: 'sara',
       phoneNumber: 'hi',
       isDeleted: false,
-
+      commercialId:1255181,
+      birthDate:new Date(),
       mode: true,
     },
   ];
@@ -137,14 +148,18 @@ export class TicketComponent implements OnInit {
   filtersForm: FormGroup = this.fb.group({
     firstName: [''],
     lastName: [''],
-    phoneNumber: ['']
+    phoneNumber: [''],
+    commercialId: [''],
+    birthDate: [''],
   });
-  onSearch() {
-    if (this.filtersForm.valid) {
-      const filters = Object.keys(this.filtersForm.value).map(key => ({
-        propertyName: key,
-        propertyValue: this.filtersForm.value[key]
-      })).filter(filter => filter.propertyValue);
-     this.gridView.updateFilters(filters);
+onSearch() {
+  if (this.filtersForm.valid) {
+    const filters = Object.keys(this.filtersForm.value).map(key => ({
+      propertyName: key,
+      propertyValue: this.filtersForm.value[key]
+    })).filter(filter => filter.propertyValue !== null && filter.propertyValue !== '');
+console.log(filters);
+
+    this.gridView.updateFilters(filters);
   }
 }}

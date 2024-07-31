@@ -4,6 +4,8 @@
   "lastName": "اسم العائلة",
   "email": "البريد الإلكترونى",
   "phoneNumber": "رقم الجوال",
+  "commercialId" :"السجل التجارى",
+  "birthDate": "تاريخ الميلاد",
   "actions": "التحكم",
   "Delete": "حذف",
   "Edit": "تعديل",

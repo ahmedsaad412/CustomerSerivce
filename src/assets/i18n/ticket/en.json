@@ -4,6 +4,8 @@
   "lastName": "Last Name",
   "email": "Email",
   "phoneNumber": "Phone Number",
+  "commercialId" :"Commerical Id",
+  "birthDate" :"Birth Of Date",
   "actions": "Actions",
   "Delete": "Delete",
   "Edit": "Edit",
