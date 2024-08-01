@@ -1,5 +1,11 @@
 <tr *ngFor="let item of Tickets ;let i = index">
-  <!-- <td ><input type="checkbox"></td> -->
+  <td>
+    <input
+      type="checkbox"
+      [checked]="isSelected(item)"
+      (change)="onCheckboxChange($event, item)"
+    />
+  </td>
   <ng-container *ngIf="editingRowIndex !== i; else editRow">
   <ng-container *ngFor="let header of options.headers" >
   <ng-container >

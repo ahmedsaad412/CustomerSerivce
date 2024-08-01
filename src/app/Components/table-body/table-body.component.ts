@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Ticket } from '../../core/models/ticket';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from '../../Shared/shared.module';
+import { SelectionService } from '../../core/services/selection.service';
 @Component({
   selector: '[mytablebody]',
   standalone: true,
@@ -14,7 +15,7 @@ import { SharedModule } from '../../Shared/shared.module';
   styleUrl: './table-body.component.css'
 })
 export class TableBodyComponent {
-  constructor(){}
+  constructor(private selectionService: SelectionService){}
   @Input () options : ITableData |any ;
 
   editingRowId :number =-1
@@ -24,8 +25,22 @@ export class TableBodyComponent {
  @Input () Tickets :Ticket[] |any;
  @Output() saveData: EventEmitter<any> = new EventEmitter<any>();
  @Output() deleteData: EventEmitter<any> = new EventEmitter<number>();
-
  ticket :Ticket |any
+
+ 
+ selectedItems: Set<any> = new Set();
+ isSelected(item: any): boolean {
+  return this.selectionService.getSelectedItems().has(item);
+}
+
+onCheckboxChange(event: Event, item: any): void {
+  const input = event.target as HTMLInputElement;
+  if (input.checked) {
+    this.selectionService.selectItem(item);
+  } else {
+    this.selectionService.deselectItem(item);
+  }
+}
 
  buttonClicked(action :string ,item : Ticket ,index :number){
     switch(action){
@@ -60,10 +75,7 @@ export class TableBodyComponent {
   }
   ToggleMode(item :Ticket){
     this.ticket= this.Tickets.find((ticket: Ticket) => ticket.id ===item.id);
-    console.log('before test '+ this.ticket.mode);
     this.ticket.mode =!item.mode;
-    console.log('after test '+ this.ticket.mode);
-
-
   }
+
 }

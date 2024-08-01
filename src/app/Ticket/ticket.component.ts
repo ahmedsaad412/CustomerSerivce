@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild ,Input} from '@angular/core';
 import { ITableData } from '../core/models/i-table-data';
 import { Ticket } from '../core/models/ticket';
 import { GridViewComponent } from '../Components/grid-view.component';
-import { FormBuilder, FormGroup,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup,FormsModule,ReactiveFormsModule } from '@angular/forms';
 import TableOptions from '../core/TableOptions';
 import { SharedModule } from '../Shared/shared.module';
 import { TranslationService } from '../core/services/translation.service';
@@ -11,7 +11,7 @@ import { TranslationService } from '../core/services/translation.service';
 @Component({
   selector: 'app-ticket',
   standalone: true,
-  imports: [GridViewComponent,ReactiveFormsModule,ReactiveFormsModule,SharedModule],
+  imports: [GridViewComponent,ReactiveFormsModule,ReactiveFormsModule,SharedModule,FormsModule],
   templateUrl: './ticket.component.html',
   styleUrl: './ticket.component.css',
 })
@@ -20,12 +20,20 @@ export class TicketComponent implements OnInit {
   pagingParameters: any;
   search :string =''
   currentLanguage: string = 'ar';
+
   constructor(private fb :FormBuilder,private translationService: TranslationService, private c: ChangeDetectorRef) {}
   ngOnInit(): void {
     this.translationService.SetDefaultLanguage(this.currentLanguage);
+      this.searchForm = this.fb.group({
+        firstName: [''],
+        lastName: [''],
+        phoneNumber: [''],
+        dateFrom: [''],
+        dateTo: ['']
+      });
     this.c.detectChanges();
   }
-  url: string = 'https://localhost:7122/api/Customers/GetCustomerPage';
+  url: string = 'https://localhost:7122/api/Customers/GetCustomerPageNew';
   mode: string = 'Server';
   data: Ticket[] = [
     {
@@ -145,21 +153,10 @@ export class TicketComponent implements OnInit {
     },
   ];
   options: ITableData = TableOptions;
-  filtersForm: FormGroup = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    phoneNumber: [''],
-    commercialId: [''],
-    birthDate: [''],
-  });
-onSearch() {
-  if (this.filtersForm.valid) {
-    const filters = Object.keys(this.filtersForm.value).map(key => ({
-      propertyName: key,
-      propertyValue: this.filtersForm.value[key]
-    })).filter(filter => filter.propertyValue !== null && filter.propertyValue !== '');
-console.log(filters);
-
-    this.gridView.updateFilters(filters);
+  searchForm!: FormGroup;
+  onSearch() {
+    const formValues = this.searchForm.value;
+    const jsonString = JSON.stringify(formValues);
+    this.gridView.updateFilters(jsonString);
   }
-}}
+}

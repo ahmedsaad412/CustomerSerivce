@@ -5,5 +5,5 @@ export interface PagingParameters {
   pageSize: number;
   sortProperty: string;
   sortDirection: string;
-  filters? :Filter[]
+  filters? :string;
 }

@@ -55,7 +55,7 @@ export class GridViewComponent implements OnInit {
     pageSize: 2,
     sortProperty: this.defultHeader.text,
     sortDirection: this.defultHeader.sortDirection,
-    filters :[]
+    filters :""
   };
   ngOnInit(): void {
     if (this.mode == 'Server') {
@@ -66,7 +66,7 @@ export class GridViewComponent implements OnInit {
           this.totalRecords=data.totalItemCount;
           this.tickets = data.items;
           this.tickets.forEach((e: any) => {
-            console.log(e);
+
           });
         },
         error: (err) => {
@@ -82,9 +82,8 @@ export class GridViewComponent implements OnInit {
       );
     }
   }
-  updateFilters(filters: Filter[]) {
-    this.pagingParameters.filters = filters;
-    console.log(this.pagingParameters.filters );
+  updateFilters(filter: string) {
+    this.pagingParameters.filters=filter;
     if (this.mode == 'Server') {
       this.customerService.FetchPage(this.Url, this.pagingParameters).subscribe({
         next: (data) => {
