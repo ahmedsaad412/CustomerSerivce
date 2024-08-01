@@ -9,5 +9,8 @@
   "actions": "Actions",
   "Delete": "Delete",
   "Edit": "Edit",
-  "search": "Search"
+  "dateFrom":"Date From",
+  "dateTo":"Date To",
+  "search": "Search",
+  "message":"No data available"
 }

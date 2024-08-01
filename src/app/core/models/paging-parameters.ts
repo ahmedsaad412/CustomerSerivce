@@ -1,4 +1,3 @@
-import { Filter } from "./filter";
 
 export interface PagingParameters {
   pageNumber: number;

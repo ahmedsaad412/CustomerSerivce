@@ -159,4 +159,9 @@ export class TicketComponent implements OnInit {
     const jsonString = JSON.stringify(formValues);
     this.gridView.updateFilters(jsonString);
   }
+  toggleLanguage(): void {
+    this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
+    this.translationService.SetDefaultLanguage(this.currentLanguage);
+    this.c.detectChanges();
+  }
 }

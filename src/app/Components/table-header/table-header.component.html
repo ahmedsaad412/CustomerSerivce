@@ -17,13 +17,13 @@
   </ng-container>
 </tr> -->
 <tr>
-  <th>
+  <!-- <th>
     <input
       type="checkbox"
       [checked]="allSelected"
       (change)="selectAll()"
     />
-  </th>
+  </th> -->
   <ng-container *ngFor="let header of options.headers">
     <th (click)="sortColumn(header)">
       <span *ngIf="header.sortable">

@@ -17,6 +17,15 @@
 .sort-icon.desc {
   border-top: 5px solid black;
 } */
+.no-data-message {
+  font-size: 1.5rem; /* Adjust font size as needed */
+  font-weight: bold;
+  color: #888; /* You can choose a color that fits your design */
+  text-align: center;
+  margin: 20px 0;
+  background-color: whitesmoke;
+  width: -webkit-fill-available; /* Add some margin for spacing */
+}
 .table thead {
   cursor: pointer;
 

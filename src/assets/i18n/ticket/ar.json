@@ -9,5 +9,8 @@
   "actions": "التحكم",
   "Delete": "حذف",
   "Edit": "تعديل",
-   "search": "بحث"
+  "dateFrom":"من",
+  "dateTo":"الى",
+   "search": "بحث",
+   "message":"لا يوجد بيانات"
 }

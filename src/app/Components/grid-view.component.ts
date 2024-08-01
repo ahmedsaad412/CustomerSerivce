@@ -38,8 +38,9 @@ export class GridViewComponent implements OnInit {
     private customerService: CustomerService,
   ) {}
   totalPages!: number;
-  currentLanguage: string = 'ar';
+
   @Input() options!: ITableData;
+  @Input() currentLanguage: string='';
   @Input() data: Ticket[] = [];
   tickets: Ticket[] | any;
   totalRecords !:number
@@ -48,6 +49,7 @@ export class GridViewComponent implements OnInit {
   systemMode :string=''
   language: boolean = true;
   sortByThisHeader: ITableHeader | any;
+
   defultHeader :ITableHeader|any =TableOptions.headers.find(h=>h.sortByDefault=true)
 
   pagingParameters: PagingParameters = {
@@ -161,9 +163,5 @@ export class GridViewComponent implements OnInit {
     this.c.detectChanges();
     // this.tickets= this.sortService.SortAfterDelete(this.tickets)
   }
-  toggleLanguage(): void {
-    this.currentLanguage = this.currentLanguage === 'ar' ? 'en' : 'ar';
-    this.translationService.SetDefaultLanguage(this.currentLanguage);
-    this.c.detectChanges();
-  }
+
 }

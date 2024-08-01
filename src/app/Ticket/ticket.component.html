@@ -1,26 +1,29 @@
 <div id="container">
   <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
-    <label for="firstName">First Name:</label>
+    <label for="firstName">{{'firstName'|translate}}</label>
     <input type="text" id="firstName" formControlName="firstName">
 
-    <label for="lastName">Last Name:</label>
+    <label for="lastName">{{'lastName'|translate}}</label>
     <input type="text" id="lastName" formControlName="lastName">
 
-    <label for="phoneNumber">Phone Number:</label>
+    <label for="phoneNumber">{{'phoneNumber'|translate}}</label>
     <input type="text" id="phoneNumber" formControlName="phoneNumber">
 
-    <label for="dateFrom">From Date:</label>
+    <label for="dateFrom">{{'dateFrom'|translate}}</label>
     <input type="date" id="dateFrom" formControlName="dateFrom">
 
-    <label for="dateTo">To Date:</label>
+    <label for="dateTo">{{'dateTo'|translate}}</label>
     <input type="date" id="dateTo" formControlName="dateTo" >
-
-    <button type="submit">Search</button>
+    <button type="submit">{{'search'|translate}}</button>
   </form>
+  <button class="btn btn-primary" (click)="toggleLanguage()">
+    {{ currentLanguage === "ar" ? " اللغة الإنجليزية" : "Arabic" }}
+  </button>
   <app-grid-view
     [options]="options"
     [data]="data"
     [Url]="url"
     [mode]="mode"
+    [currentLanguage]="currentLanguage"
   ></app-grid-view>
 </div>
